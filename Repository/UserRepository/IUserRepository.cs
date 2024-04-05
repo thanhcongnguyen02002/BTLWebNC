@@ -5,4 +5,5 @@ public interface IUserRepository
     User Register(User user);
     void DisableAccount(int id);
     User UpdateAccount(User user);
+    // User Login(string username, string password);
 }
