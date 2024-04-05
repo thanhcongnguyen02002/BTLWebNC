@@ -8,6 +8,14 @@ public class CategoryRepositoryImpl : ICategoryRepository
     {
         this.context = context;
     }
+
+    public Category CreateCategory(Category category)
+    {
+        context.Categories.Add(category);
+        context.SaveChanges();
+        return category;
+    }
+
     public List<Category> GetListAllCategory()
     {
         return context.Categories.ToList();
