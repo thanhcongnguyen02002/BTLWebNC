@@ -5,12 +5,44 @@
       "PackagePath": "staticwebassets\\BTLWebNC.bundle.scp.css"
     },
     {
+      "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\css\\home.css",
+      "PackagePath": "staticwebassets\\css\\home.css"
+    },
+    {
       "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
       "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\img\\bg11.png",
+      "PackagePath": "staticwebassets\\img\\bg11.png"
+    },
+    {
+      "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\img\\review.jpg",
+      "PackagePath": "staticwebassets\\img\\review.jpg"
+    },
+    {
+      "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\img\\review.svg",
+      "PackagePath": "staticwebassets\\img\\review.svg"
+    },
+    {
+      "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\img\\review1.jpg",
+      "PackagePath": "staticwebassets\\img\\review1.jpg"
+    },
+    {
+      "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\img\\review2.jpg",
+      "PackagePath": "staticwebassets\\img\\review2.jpg"
+    },
+    {
+      "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\img\\review3.jpg",
+      "PackagePath": "staticwebassets\\img\\review3.jpg"
+    },
+    {
+      "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\js\\home.js",
+      "PackagePath": "staticwebassets\\js\\home.js"
     },
     {
       "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\js\\site.js",

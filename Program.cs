@@ -8,9 +8,18 @@ builder.Services.AddControllersWithViews();
 // builder.Services.AddDbContextPool<MyDbContext>(options =>
 // options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+// connect sql server
 builder.Services.AddDbContextPool<MyDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
+
+// builder.Services.AddScoped<IProductRepository, ProductRepositoryImpl>();
+// builder.Services.AddScoped<IdGioHang, GioHangImpl>();
+
+// add repository
+builder.Services.AddScoped<ICategoryRepository, CategoryRepositoryImpl>();
+builder.Services.AddScoped<IUserRepository, UserRepositoryImpl>();
+builder.Services.AddScoped<IPostRepository, PostRepositoryImpl>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
