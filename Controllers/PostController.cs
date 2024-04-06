@@ -10,8 +10,8 @@ public class PostController : Controller
     }
     public IActionResult Index()
     {
-        List<Post> posts = repository.GetAllPost();
-        return View(posts);
+        // List<Post> posts = repository.GetAllPost();
+        return View("Index");
     }
 
 }
