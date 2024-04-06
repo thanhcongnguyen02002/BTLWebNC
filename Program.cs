@@ -1,5 +1,6 @@
 using BTLWebNC.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services.AddSession(options =>
 {
 
 });
+builder.Services.AddHttpContextAccessor();
 // connect sql server
 builder.Services.AddDbContextPool<MyDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -24,6 +26,7 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnectio
 builder.Services.AddScoped<ICategoryRepository, CategoryRepositoryImpl>();
 builder.Services.AddScoped<IUserRepository, UserRepositoryImpl>();
 builder.Services.AddScoped<IPostRepository, PostRepositoryImpl>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

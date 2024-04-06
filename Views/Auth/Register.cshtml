@@ -1,3 +1,4 @@
+@model ResgisterDTO
 @{
     ViewData["Title"] = "Đăng ký";
 }
@@ -5,25 +6,28 @@
     <div class="row justify-content-center">
         <div class="col-4 bg-white border  p-3" style="border-radius:6px">
             <div class="d-flex mt-3 justify-content-center align-items-center ">
-                <div  ><i class="fa-solid fa-chevron-left mr-1 "></i> </div>
+                <div  ><a href="/Auth/Login" style="text-decoration: none; color: inherit;"><i class="fa-solid fa-chevron-left mr-1 "></i><a> </div>
                 <div class="ms-2" ><b> Đăng ký tài khoản</b></div>
-                <div style="margin-left:auto"><i class="fa-regular fa-circle-xmark  "></i></div>
+                <div style="margin-left:auto"><a style="text-decoration: none; color: inherit;" href="/Home/Index"><i class="fa-regular fa-circle-xmark "></a></i></div>
             </div>
             <hr/>
             <div class=" d-flex justify-content-center align-items-center">
             <img src="~/img/review3.jpg"  />
             </div>
             <div >
-                <form>
+                <form asp-controller="Auth" asp-action="Register" method="post">
                     <div >
-                        <input class="w-100 mb-3" type="text" style="padding:8px 12px ;border:1px solid rgba(0, 0, 0, .2); border-radius:8px"  placeholder="Tên tài khoản">
-                        <input class="w-100 mb-3" type="text"  style="padding:8px 12px;border:1px solid rgba(0, 0, 0, .2); border-radius:8px"  placeholder="Mật khẩu">
-                        <button class="w-100 mb-3" style="background-color:#0B78E2; color:#ffffff; border:none; padding: 8px 16px; border-radius:8px">Đăng nhập</button>
+                        <input asp-for="email" class="w-100 mb-3" type="text"  style="padding:8px 12px;border:1px solid rgba(0, 0, 0, .2); border-radius:8px"  placeholder="Email">
+                        <input asp-for="username" class="w-100 mb-3" type="text" style="padding:8px 12px ;border:1px solid rgba(0, 0, 0, .2); border-radius:8px"  placeholder="Tên tài khoản">
+                        <input asp-for="password" class="w-100 mb-3" type="text"  style="padding:8px 12px;border:1px solid rgba(0, 0, 0, .2); border-radius:8px"  placeholder="Mật khẩu">
+                        <input class="w-100 mb-3" type="text"  style="padding:8px 12px;border:1px solid rgba(0, 0, 0, .2); border-radius:8px"  placeholder="Nhập lại mật khẩu">
+                        <input asp-for="avatar" class="w-100 mb-3" type="text"  style="padding:8px 12px;border:1px solid rgba(0, 0, 0, .2); border-radius:8px"  placeholder="Ảnh đại diện">
+                        <button type="submit" class="w-100 mb-3" style="background-color:#0B78E2; color:#ffffff; border:none; padding: 8px 16px; border-radius:8px">Đăng ký ngay</button>
                     </div>
                 </form>
             </div>
             <div class=" d-flex justify-content-center align-items-center">
-                <p>Bạn chưa có tài khoản? <a href="">Đăng kí</a></p>
+                <p>Bạn đã có tài khoản? <a style="text-decoration: none" href="/Auth/Login">Đăng nhập</a></p>
             </div>
         <div>
     </div>

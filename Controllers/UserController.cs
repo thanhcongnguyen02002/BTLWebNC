@@ -18,4 +18,9 @@ public class UserController : Controller
         repository.DisableAccount(id);
         return View("Index");
     }
+    public IActionResult Register(ResgisterDTO resgisterDTO)
+    {
+        var result = repository.Register(resgisterDTO);
+        return View(result);
+    }
 }

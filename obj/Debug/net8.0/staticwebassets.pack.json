@@ -17,6 +17,18 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\img\\Apple-Vision-Pro.webp",
+      "PackagePath": "staticwebassets\\img\\Apple-Vision-Pro.webp"
+    },
+    {
+      "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\img\\apple1.webp",
+      "PackagePath": "staticwebassets\\img\\apple1.webp"
+    },
+    {
+      "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\img\\apple2.webp",
+      "PackagePath": "staticwebassets\\img\\apple2.webp"
+    },
+    {
       "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\img\\bg11.png",
       "PackagePath": "staticwebassets\\img\\bg11.png"
     },

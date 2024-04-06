@@ -1,7 +1,9 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
     ViewData["Title"] = "Home Page";
 }
-<link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+@* <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
 <section class="manuals py-5 my-5" id="HDSD">
     <div class="container">
         <div class="using">
@@ -33,6 +35,26 @@
             </div>
         </div>
     </div>
-</section>
+</section> *@
+<div class=".container-md mt-5 ">
+    <div class="row justify-content-center">
+        <div class="col-8 d-flex   bg-white"  >
+            <div >
+                <h3>Bài viết mới nhất</h3>
+                <div class="d-flex">
+                    <div >
+                        <img src="~/img/Apple-Vision-Pro.webp" style="width:220px; height: 160px ; border-radius:8px; margin-top:8px"/>
+                    </div>
+                    <div class="ms-2">
+                        <h4 >
+                            <b>Apple Vision Pro đã biến mất như chưa từng tồn tại, người ta không còn nói về nó nữa... </b>
+                        </h4>
+                        <p>Sau một số bài chia sẻ trải nghiệm Vision Pro của mình với anh em thì mình đã không còn biết dùng nó vào việc gì nữa. Đưa cho Didu mượn ít hôm, Anh Tú. mượn mấy hôm… rồi lại bỏ vào túi treo trong tủ chứ chẳng biết làm gì với nó…</p>
+                    </div>
+                </div>
+            </div>
+        <div>
+    </div>
+</div>
 
 
