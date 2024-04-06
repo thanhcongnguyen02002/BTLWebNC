@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -9,41 +11,65 @@
     <link rel="stylesheet" href="~/BTLWebNC.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">BTLWebNC</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
+    
+   <header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                <img src="~/img/review3.jpg" class="img-fluid" />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1 justify-content-end nav-right">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark text-capitalize" asp-area="" asp-controller="Home" asp-action="usermanual">Hướng dẫn sử dụng</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark text-capitalize" asp-area="" asp-controller="Home" asp-action="">đăng ký thuê xe</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark text-capitalize" asp-area="" asp-controller="Home" asp-action="">đăng ký cho thuê xe</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark text-capitalize" asp-area="" asp-controller="Home" asp-action="">Tin tức</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark text-capitalize" asp-area="" asp-controller="Home" asp-action="contact">liên hệ</a>
+                    </li>
+                    <li class="nav-item ">
+                     @if(HttpContextAccessor.HttpContext.Session.GetString("username")== null){
+                        <a class="nav-link text-dark text-capitalize" asp-area="" asp-controller="Auth" asp-action="Login"><i class="fa-solid fa-right-to-bracket"></i> đăng nhập</a>}
+                    </li>
+                    <li class="nav-item">
+                        @if(HttpContextAccessor.HttpContext.Session.GetString("username")!= null){
+                             <a class="nav-link text-dark text-capitalize" asp-area="" asp-controller="" asp-action=""><i class="fa-regular fa-user"></i> @HttpContextAccessor.HttpContext.Session.GetString("username")</a>
+                        }
+                    </li>
+                    <li class="nav-item ">
+                     @if(HttpContextAccessor.HttpContext.Session.GetString("username")!= null){
+                        <a class="nav-link text-dark text-capitalize" asp-area="" asp-controller="" asp-action=""><i class="fa-solid fa-right-to-bracket"></i> đăng xuất</a>}
+                    </li>
+                </ul>
             </div>
-        </nav>
-    </header>
+        </div>
+    </nav>
+</header>
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 - BTLWebNC - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="~/js/home.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     <script src="https://kit.fontawesome.com/6cd60d624c.js" crossorigin="anonymous"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

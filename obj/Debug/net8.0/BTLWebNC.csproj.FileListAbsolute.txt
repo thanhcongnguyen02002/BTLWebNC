@@ -134,3 +134,4 @@ E:\asp net core mvc\BTL\BTLWebNC\obj\Debug\net8.0\refint\BTLWebNC.dll
 E:\asp net core mvc\BTL\BTLWebNC\obj\Debug\net8.0\BTLWebNC.pdb
 E:\asp net core mvc\BTL\BTLWebNC\obj\Debug\net8.0\BTLWebNC.genruntimeconfig.cache
 E:\asp net core mvc\BTL\BTLWebNC\obj\Debug\net8.0\ref\BTLWebNC.dll
+E:\asp net core mvc\BTL\BTLWebNC\obj\Debug\net8.0\BTLWebNC.sourcelink.json

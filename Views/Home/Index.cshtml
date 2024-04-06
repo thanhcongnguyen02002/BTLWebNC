@@ -1,8 +1,60 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+@{
     ViewData["Title"] = "Home Page";
 }
+@* <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+<section class="manuals py-5 my-5" id="HDSD">
+    <div class="container">
+        <div class="using">
+            <h2 class="title text-capitalize">cách sử dụng</h2>
+            <p>Sau khi <span>vào website</span>, sử dụng dễ dàng với 3 bước: Tìm xe - Liên hệ - Trả xe</p>
+            <div class="owl-carousel owl-theme " id="manualsct">
+                <div class="item" data-dot="
+              <button>1</button>
+              <h2>Đăng ký thuê xe</h2>
+              <p>Chạm vào nút ''Mở khóa'' và quét mã QR trên xe đạp/khóa xe để tự động mở khóa.</p>">
+          <img src="~/img/review.jpg" alt="">
+        </div>
+                <div class="item"
+                     data-dot="
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+                  <button>2</button>
+                  <h2>liên hệ</h2>
+                  <p>Tận hưởng chuyến đi, nên đội mũ bảo hiểm và tuân thủ luật giao thông. Trong quá trình sử dụng bạn có thể khóa xe tạm thời và mở lại bất kì lúc nào bằng ứng dụng di động.</p>">
+          <img src="~/img/review.jpg" alt="">
+        </div>
+                <div class="item"
+                     data-dot="
+
+                      <button>3</button>
+                      <h2>Trả xe</h2>
+                      <p>Trả xe đạp về trạm TNGo bất kỳ. Thực hiện đóng khóa xe và xác nhận kết thúc chuyến đi trên ứng dụng TNGo.</p>">
+          <img src="~/img/review.jpg" alt="">
+        </div>
+            </div>
+        </div>
+    </div>
+</section> *@
+<div class=".container-md mt-5 ">
+    <div class="row justify-content-center">
+        <div class="col-8 d-flex   bg-white"  >
+            <div >
+                <h3>Bài viết mới nhất</h3>
+                <div class="d-flex">
+                    <div >
+                        <img src="~/img/Apple-Vision-Pro.webp" style="width:220px; height: 160px ; border-radius:8px; margin-top:8px"/>
+                    </div>
+                    <div class="ms-2">
+                        <h4 >
+                            <b>Apple Vision Pro đã biến mất như chưa từng tồn tại, người ta không còn nói về nó nữa... </b>
+                        </h4>
+                        <p>Sau một số bài chia sẻ trải nghiệm Vision Pro của mình với anh em thì mình đã không còn biết dùng nó vào việc gì nữa. Đưa cho Didu mượn ít hôm, Anh Tú. mượn mấy hôm… rồi lại bỏ vào túi treo trong tủ chứ chẳng biết làm gì với nó…</p>
+                    </div>
+                </div>
+            </div>
+        <div>
+    </div>
 </div>
+
+
