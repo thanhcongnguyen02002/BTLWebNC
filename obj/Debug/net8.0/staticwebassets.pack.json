@@ -29,8 +29,28 @@
       "PackagePath": "staticwebassets\\img\\apple2.webp"
     },
     {
+      "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\img\\applemenubar.webp",
+      "PackagePath": "staticwebassets\\img\\applemenubar.webp"
+    },
+    {
+      "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\img\\ariport.jpg",
+      "PackagePath": "staticwebassets\\img\\ariport.jpg"
+    },
+    {
+      "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\img\\banner.jpg",
+      "PackagePath": "staticwebassets\\img\\banner.jpg"
+    },
+    {
       "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\img\\bg11.png",
       "PackagePath": "staticwebassets\\img\\bg11.png"
+    },
+    {
+      "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\img\\galaxy.webp",
+      "PackagePath": "staticwebassets\\img\\galaxy.webp"
+    },
+    {
+      "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\img\\pin.webp",
+      "PackagePath": "staticwebassets\\img\\pin.webp"
     },
     {
       "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\img\\review.jpg",
@@ -51,6 +71,10 @@
     {
       "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\img\\review3.jpg",
       "PackagePath": "staticwebassets\\img\\review3.jpg"
+    },
+    {
+      "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\img\\sony.webp",
+      "PackagePath": "staticwebassets\\img\\sony.webp"
     },
     {
       "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\js\\home.js",

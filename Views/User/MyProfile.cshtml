@@ -1,0 +1,106 @@
+@model MyProfile
+<div style="background-color:#DFD8D4  ">
+    <div class="d-flex justify-content-center position-relative">
+        <img src="~/img/review1.jpg" style="width:150px; heigth:150px; border-radius:50%; padding-top:10px"/>
+       <div style="    position: absolute;bottom: 3px;right: 710px;z-index: 100;">
+            <i class="fa-solid fa-pen-to-square"></i>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+        <span><b>@Model.User.username</b></span>
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+        <span class="m-3"><b>@Model.User.email</b></span>
+        <span class="m-3"><b>@Model.User.createDate</b></span>
+        <span class="m-3"><b>online</b></span>
+    </div>
+</div>
+@if(Model.Posts !=null){
+    @foreach(var item in Model.Posts){
+        <div><span class=" d-flex justify-content-end  mt-3"><a href='@Url.Action("CreatePost", "Post")' class="btn btn-primary ">Tạo bài viết mới</a></span></div>
+        <div id="postContainer-@item.id" class="container-sm mt-5">
+        <div class="row justify-content-center">
+            <div class="col-7 bg-white" style="border-radius:10px">
+                <div>
+                    <div>
+                        <div class=" d-flex mt-3 align-items-center relative w-100">
+                            <h3 >@item.title</h3>
+                            <div class="absolute" style="left:auto">
+                                <i class="fa-solid fa-trash deleteIcon"  data-post-id="@item.id"></i>
+                            </div>
+                        </div>
+                        <p>@item.createDate</p>
+                    </div>
+                    
+                    <div class="d-flex align-items-center mt-3">
+                        <div>
+                            <img src="~/img/review1.jpg" style="border-radius:50%; margin-left: 75px; width:40px"/>
+                        </div>
+                        <div class="ms-2">
+                           <span> @item.User.username</span>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center mt-3">
+                        <img src ="~/img/ariport.jpg" style=" width: 600px; height: 400px; border-radius:8px"/>
+                    </div>
+                    <div class="d-flex justify-content-center mt-3" style="width: 600px; margin:0 auto">
+                        <span>@item.content</span>
+                    </div>
+                    <hr>
+                    
+                    <div class="d-flex justify-content-between align-items-center p-2 ">
+                        <div class="d-flex align-items-center heartIcons" onclick="toggleHearts(this)">
+                            <div class="regularHeart"><i class="fa-regular fa-heart"></i></div>
+                            <div class="solidHeart" style="display:none;"><i class="fa-solid fa-heart"></i></div>
+                            <div>yêu thích</div>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center gap-2">
+                            <div><i class="fa-solid fa-comment"></i></div>
+                            <div>bình luận</div>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center gap-2">
+                            <div><i class="fa-solid fa-share"></i></div>
+                            <div>chia sẻ</div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+
+    }
+}else{
+    <div >
+        <span class=" d-flex justify-content-center align-items-center mt-3 mr-3"><a href='@Url.Action("CreatePost", "Post")' class="btn btn-primary ">bạn chưa có bài viết nào. Tạo ngay</a></span>
+        
+    </div>
+}
+<script>
+    function deletePost(postId) {
+        var baseURL = "http://localhost:5051";
+        var xhr = new XMLHttpRequest();
+        xhr.open("DELETE", `/DeleteByID/${postId}` , true);
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === XMLHttpRequest.DONE) {
+                if (xhr.status === 200) {
+                  document.getElementById(`postContainer-${postId}`).remove(); // Remove the post container
+                } else {
+                    alert("Xóa bài viết không thành công.");
+                }
+            }
+        };
+        xhr.send();
+    }
+
+    document.querySelectorAll(".deleteIcon").forEach(icon => {
+        icon.addEventListener("click", function() {
+            var postId = this.getAttribute("data-post-id");
+            var confirmation = confirm("Bạn có chắc muốn xóa bài viết này?");
+            if (confirmation) {
+                deletePost(postId);
+            }
+        });
+    });
+</script>
+

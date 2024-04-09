@@ -4,23 +4,36 @@ namespace BTLWebNC.Controllers;
 public class UserController : Controller
 {
     private readonly IUserRepository repository;
-    public UserController(IUserRepository repository)
+    private readonly IPostRepository postRepository;
+    public UserController(IUserRepository repository, IPostRepository postRepository)
     {
         this.repository = repository;
+        this.postRepository = postRepository;
     }
     public IActionResult Index()
     {
-        List<User> users = repository.GetListUser();
-        return View(users);
+        // List<User> users = repository.GetListUser();
+        // return View(users);
+        return View("MyProfile");
     }
     public IActionResult DisableAccount(int id)
     {
         repository.DisableAccount(id);
         return View("Index");
     }
-    public IActionResult Register(ResgisterDTO resgisterDTO)
+
+    public IActionResult MyProfile()
     {
-        var result = repository.Register(resgisterDTO);
-        return View(result);
+        var myprofile = new MyProfile();
+        var user = repository.MyProfile();
+        var posts = postRepository.GetPostByID();
+        if (user != null)
+        {
+            myprofile.User = user;
+            myprofile.Posts = posts;
+            return View(myprofile);
+        }
+        return RedirectToAction("Index", "Post");
+
     }
 }
