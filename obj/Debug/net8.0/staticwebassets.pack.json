@@ -33,6 +33,10 @@
       "PackagePath": "staticwebassets\\img\\applemenubar.webp"
     },
     {
+      "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\img\\ariport.jpg",
+      "PackagePath": "staticwebassets\\img\\ariport.jpg"
+    },
+    {
       "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\img\\banner.jpg",
       "PackagePath": "staticwebassets\\img\\banner.jpg"
     },

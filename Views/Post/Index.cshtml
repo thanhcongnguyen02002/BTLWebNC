@@ -1,16 +1,65 @@
-@* @model List<Post>
+@model List<Post>;
+
 @foreach(var item in Model){
-    <div>
-    @item.title
+    <div class="container-sm mt-5">
+        <div class="row justify-content-center">
+            <div class="col-7 bg-white" style="border-radius:10px">
+                <div>
+                    <div>
+                        <h3 class="mt-3">@item.title</h3>
+                        <p>@item.createDate</p>
+                    </div>
+                    
+                    <div class="d-flex align-items-center mt-3">
+                        <div>
+                            <img src="~/img/review1.jpg" style="border-radius:50%; margin-left: 75px; width:40px"/>
+                        </div>
+                        <div class="ms-2">
+                           @if (item.User != null) { 
+                                <span><b>@item.User.username</b></span>
+                            }
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center align-items-center mt-3">
+                        <img src ="~/img/ariport.jpg" style=" width: 600px; height: 400px; border-radius:8px"/>
+                    </div>
+                    <div class="d-flex justify-content-center mt-3" style="width: 600px; margin:0 auto">
+                        <p>@item.content</p>
+                    </div>
+                    <hr>
+                    
+                    <div class="d-flex justify-content-between align-items-center p-2 ">
+                        <div class="d-flex align-items-center heartIcons" onclick="toggleHearts(this)">
+                            <div class="regularHeart"><i class="fa-regular fa-heart"></i></div>
+                            <div class="solidHeart" style="display:none;"><i class="fa-solid fa-heart"></i></div>
+                            <div>yêu thích</div>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center gap-2">
+                            <div><i class="fa-solid fa-comment"></i></div>
+                            <div>bình luận</div>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center gap-2">
+                            <div><i class="fa-solid fa-share"></i></div>
+                            <div>chia sẻ</div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
     </div>
-    <div>
-    @item.content
-    </div>
-} *@
-<div class=".container-sm mt-5">
-    <div class="row justify-content-center">
-        <div class="col-8 d-flex   bg-white" style="border-radius:6px">
-            ssfs
-        <div>
-    </div>
-</div>
+}
+
+<script>
+    function toggleHearts(element) {
+        var regularHeart = element.querySelector('.regularHeart');
+        var solidHeart = element.querySelector('.solidHeart');
+
+        if (regularHeart.style.display === "none") {
+            regularHeart.style.display = "inline";
+            solidHeart.style.display = "none";
+        } else {
+            regularHeart.style.display = "none";
+            solidHeart.style.display = "inline";
+        }
+    }
+</script>

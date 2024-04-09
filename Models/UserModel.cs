@@ -1,5 +1,8 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
+
 namespace BTLWebNC.Models;
 [Table("tblUser")]
 public class User
@@ -13,14 +16,6 @@ public class User
     public string? avatar { get; set; }
     public string? role { get; set; }
     public bool status { get; set; }
-    public List<Post>? posts { get; set; }
+    public List<Post> posts { get; set; }
     public List<Comment>? comments { get; set; }
 }
-// id int IDENTITY(1,1) Primary key not null,
-// 	username varchar(50),
-// 	email varchar(150),
-// 	password varchar(200),
-// 	createDate datetime  DEFAULT GETDATE(),
-// 	avatar varchar(250),
-// 	role varchar(20),
-// 	status bit DEFAULT 1

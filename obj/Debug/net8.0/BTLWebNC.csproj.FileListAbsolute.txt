@@ -135,3 +135,12 @@ E:\asp net core mvc\BTL\BTLWebNC\obj\Debug\net8.0\BTLWebNC.pdb
 E:\asp net core mvc\BTL\BTLWebNC\obj\Debug\net8.0\BTLWebNC.genruntimeconfig.cache
 E:\asp net core mvc\BTL\BTLWebNC\obj\Debug\net8.0\ref\BTLWebNC.dll
 E:\asp net core mvc\BTL\BTLWebNC\obj\Debug\net8.0\BTLWebNC.sourcelink.json
+E:\asp net core mvc\BTL\BTLWebNC\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.Internal.dll
+E:\asp net core mvc\BTL\BTLWebNC\bin\Debug\net8.0\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+E:\asp net core mvc\BTL\BTLWebNC\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+E:\asp net core mvc\BTL\BTLWebNC\bin\Debug\net8.0\Microsoft.AspNetCore.Identity.UI.dll
+E:\asp net core mvc\BTL\BTLWebNC\bin\Debug\net8.0\Microsoft.Extensions.FileProviders.Embedded.dll
+E:\asp net core mvc\BTL\BTLWebNC\bin\Debug\net8.0\Microsoft.Extensions.Identity.Core.dll
+E:\asp net core mvc\BTL\BTLWebNC\bin\Debug\net8.0\Microsoft.Extensions.Identity.Stores.dll
+E:\asp net core mvc\BTL\BTLWebNC\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+E:\asp net core mvc\BTL\BTLWebNC\obj\Debug\net8.0\BTLWebNC.MvcApplicationPartsAssemblyInfo.cs

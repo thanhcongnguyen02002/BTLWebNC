@@ -14,21 +14,11 @@ public class Post
     public string? content { get; set; }
     public DateTime createDate { get; set; }
     public string? thumbnail { get; set; }
-    public int viewPost { get; set; }
+    public int? viewPost { get; set; }
     public bool status { get; set; }
     public DateTime updateDate { get; set; }
-    public User? User { get; set; }
-    public Category? Category { get; set; }
+    public User User { get; set; }
+    public Category Category { get; set; }
     public List<Comment>? comments { get; set; }
 
 }
-// id int IDENTITY(1,1) Primary key not null,
-// 	user_id int,
-// 	category_id int,
-// 	title nvarchar(150),
-// 	content nvarchar(max),
-// 	createDate datetime DEFAULT GETDATE(),
-// 	thumbnail varchar(250),
-// 	viewPost int,
-// 	status bit DEFAULT 1,
-// 	updateDate datetime DEFAULT GETDATE()

@@ -1,4 +1,6 @@
+using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 
 namespace BTLWebNC.Models;
 
@@ -10,6 +12,33 @@ public class UserRepositoryImpl : IUserRepository
     {
         this.context = context;
         this.httpContextAccessor = httpContextAccessor;
+    }
+    public string GetRoleByUsername(string username)
+    {
+        var user = context.Users.First(u => u.username == username);
+        if (user != null)
+        {
+            return user.role;
+        }
+
+        return null;
+    }
+
+    public async Task<User> Login(LoginDTO loginDTO)
+    {
+        var result = context.Users.FirstOrDefault(u => u.username == loginDTO.username && u.password == loginDTO.password);
+        if (result != null)
+        {
+            httpContextAccessor.HttpContext.Session.SetString("username", loginDTO.username);
+        }
+        else
+        {
+
+        }
+        return result;
+
+
+
     }
     public void DisableAccount(int id)
     {
@@ -30,40 +59,32 @@ public class UserRepositoryImpl : IUserRepository
         return context.Users.ToList();
     }
 
-    public User Login(string username, string password)
-    {
-        var result = context.Users.FirstOrDefault(u => u.username == username && u.password == password);
-        if (result != null)
-        {
-            httpContextAccessor.HttpContext.Session.SetString("username", username);
-        }
-        else
-        {
 
-        }
-        return result;
 
-    }
-
-    public User Register(ResgisterDTO resgisterDTO)
-    {
-        User user = new User
-        {
-            email = resgisterDTO.email,
-            username = resgisterDTO.username,
-            password = resgisterDTO.password,
-            avatar = resgisterDTO.avatar,
-            status = true,
-            role = "user",
-            createDate = DateTime.Now
-        };
-        context.Users.Add(user);
-        context.SaveChanges();
-        return user;
-    }
 
     public User UpdateAccount(User user)
     {
         throw new NotImplementedException();
     }
+
+    public User MyProfile()
+    {
+        var principal = httpContextAccessor.HttpContext.User;
+        var userIdClaim = principal.Claims.FirstOrDefault(c => c.Type == ClaimTypes.NameIdentifier);
+        if (userIdClaim != null && int.TryParse(userIdClaim.Value, out int userId))
+        {
+            // Truy xuất thông tin người dùng từ cơ sở dữ liệu dựa vào ID
+            var user = context.Users.SingleOrDefault(u => u.id == userId);
+
+            if (user != null)
+            {
+
+                // var userPosts = context.Posts.Where(p => p.user_id == userId).ToList();
+                var myuser = context.Users.FirstOrDefault(u => u.id == userId);
+                return myuser;
+            }
+        }
+        return null;
+    }
+
 }

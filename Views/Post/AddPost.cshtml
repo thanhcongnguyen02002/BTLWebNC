@@ -1,0 +1,23 @@
+@model Post
+
+<div class=".container-sm mt-5">
+    <div class="row justify-content-center">
+        <div class="col-6 bg-white border  p-3" style="border-radius:6px">
+       
+            <div class="d-flex mt-3">
+                <div  ><b> Tạo bài viết mới</b></div>
+                <div style="margin-left:auto"><a style="text-decoration: none; color: inherit;" href="/Post/Index"><i class="fa-regular fa-circle-xmark  "></i></a></div>
+            </div>
+            <div class=" d-flex justify-content-center align-items-center"><img src="~/img/review3.jpg"  /></div>
+            <hr>
+            <form asp-controller="Post" asp-action="CreatePost">
+
+                <input  style="padding:8px 12px;border:1px solid rgba(0, 0, 0, .2); border-radius:8px" asp-for="title" class="w-100 mt-3" type="text" placeholder="Tiêu đề"/>
+                <input  style="padding:8px 12px;border:1px solid rgba(0, 0, 0, .2); border-radius:8px" asp-for="category_id" class="w-100 mt-3" type="number" placeholder="Category ID" />
+                <input  style="padding:8px 12px;border:1px solid rgba(0, 0, 0, .2); border-radius:8px" asp-for="thumbnail" class="w-100 mt-3" type="text" placeholder="avt"/>
+                <input  style="padding:8px 12px;border:1px solid rgba(0, 0, 0, .2); border-radius:8px" asp-for="content" class="w-100 mt-3" type="text"  style="height:300px"/>
+                <button class=" btn btn-primary d-flex justify-content-center mt-3" style="width:100px; " type="submit">thêm</button>
+            </form>
+        </div>
+    </div>
+</div>

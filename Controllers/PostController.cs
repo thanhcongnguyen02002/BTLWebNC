@@ -10,8 +10,25 @@ public class PostController : Controller
     }
     public IActionResult Index()
     {
-        // List<Post> posts = repository.GetAllPost();
-        return View("Index");
+        List<Post> posts = repository.GetAllPost();
+        return View(posts);
+    }
+    public IActionResult CreatePost()
+    {
+        return View("AddPost");
+    }
+    [HttpPost]
+    public IActionResult CreatePost(Post post)
+    {
+        var result = repository.CreatePost(post);
+        return RedirectToAction("Index");
+
+    }
+    [HttpDelete("DeleteByID/{id}")]
+    public IActionResult DeleteById(int id)
+    {
+        repository.DeleteByID(id);
+        return Json(new { success = true });
     }
 
 }
