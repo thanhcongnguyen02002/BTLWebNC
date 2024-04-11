@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "FvwXmdrSZ0hwqHlJhJEYJTUuXWOo5P6FUBiP3UonBlw=",
+  "Hash": "543eboZNzvhzIMVAsxU/9B4aQrRhpVWLn4R1N9Tg4qg=",
   "Source": "BTLWebNC",
   "BasePath": "_content/BTLWebNC",
   "Mode": "Default",
@@ -1535,6 +1535,25 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\img\\sony.webp"
+    },
+    {
+      "Identity": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\js\\fornt..js",
+      "SourceId": "BTLWebNC",
+      "SourceType": "Discovered",
+      "ContentRoot": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\",
+      "BasePath": "_content/BTLWebNC",
+      "RelativePath": "js/fornt..js",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\js\\fornt..js"
     },
     {
       "Identity": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\js\\home.js",

@@ -77,6 +77,10 @@
       "PackagePath": "staticwebassets\\img\\sony.webp"
     },
     {
+      "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\js\\fornt..js",
+      "PackagePath": "staticwebassets\\js\\fornt..js"
+    },
+    {
       "Id": "E:\\asp net core mvc\\BTL\\BTLWebNC\\wwwroot\\js\\home.js",
       "PackagePath": "staticwebassets\\js\\home.js"
     },

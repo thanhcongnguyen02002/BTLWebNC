@@ -1,0 +1,20 @@
+  @model List<Comment>;
+    @foreach(var comment in Model ){
+        <div class="d-flex mt-2">
+            <div>
+            <img src="~/img/review1.jpg" style="width:40px; height:40px; border-radius:50%;"/>
+            </div>
+            <div style="margin-left:20px;border-radius:8px; background-color:#F0F2F5" class="border p-2" >
+                <div >
+                  content.username
+                </div>
+                <div>
+                    <span>comment.content</span>
+                </div>
+            </div>
+        </div>}
+   @* }
+    }else{
+        <span>chưa có bình luận nào</span>
+    }
+} *@

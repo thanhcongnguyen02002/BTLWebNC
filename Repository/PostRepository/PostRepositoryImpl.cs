@@ -21,7 +21,7 @@ public class PostRepositoryImpl : IPostRepository
         if (userIdClaim != null && int.TryParse(userIdClaim.Value, out int userId))
         {
             // Truy xuất thông tin người dùng từ cơ sở dữ liệu dựa vào ID
-            var user = context.Posts.SingleOrDefault(p => p.user_id == userId);
+            // var user = context.Posts.FirstOrDefault(p => p.user_id == userId);
 
             Post result = new Post
             {
@@ -65,7 +65,7 @@ public class PostRepositoryImpl : IPostRepository
         if (userIdClaim != null && int.TryParse(userIdClaim.Value, out int userId))
         {
             // Truy xuất thông tin người dùng từ cơ sở dữ liệu dựa vào ID
-            var user = context.Posts.SingleOrDefault(p => p.user_id == userId);
+            var user = context.Posts.FirstOrDefault(p => p.user_id == userId);
             if (user != null)
             {
                 var listpost = context.Posts.Where(p => p.user_id == userId).Include(i => i.User).ToList();

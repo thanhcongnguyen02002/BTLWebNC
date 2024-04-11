@@ -15,9 +15,12 @@
                 <input  style="padding:8px 12px;border:1px solid rgba(0, 0, 0, .2); border-radius:8px" asp-for="title" class="w-100 mt-3" type="text" placeholder="Tiêu đề"/>
                 <input  style="padding:8px 12px;border:1px solid rgba(0, 0, 0, .2); border-radius:8px" asp-for="category_id" class="w-100 mt-3" type="number" placeholder="Category ID" />
                 <input  style="padding:8px 12px;border:1px solid rgba(0, 0, 0, .2); border-radius:8px" asp-for="thumbnail" class="w-100 mt-3" type="text" placeholder="avt"/>
-                <input  style="padding:8px 12px;border:1px solid rgba(0, 0, 0, .2); border-radius:8px" asp-for="content" class="w-100 mt-3" type="text"  style="height:300px"/>
-                <button class=" btn btn-primary d-flex justify-content-center mt-3" style="width:100px; " type="submit">thêm</button>
+                <textarea   style="padding:8px 12px;border:1px solid rgba(0, 0, 0, .2); border-radius:8px" asp-for="content" class="w-100 mt-3" type="text"  style="height:300px"> </textarea >
+                <div class=" text-center">
+                    <button class=" btn btn-primary d-flex justify-content-center mt-3" style="width:100px; " type="submit">thêm</button>
+                </div>
             </form>
+
         </div>
     </div>
 </div>
