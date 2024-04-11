@@ -10,7 +10,7 @@ public class Comment
     public int post_id { get; set; }
     [ForeignKey("User")]
     public int user_id { get; set; }
-    public DateTime createDate { get; set; }
+    public DateTime creatDate { get; set; }
     public string? content { get; set; }
     public Post? Post { get; set; }
     public User? User { get; set; }

@@ -33,28 +33,6 @@ public class AuthController : Controller
         return View("Register");
     }
 
-
-    // [HttpPost]
-    // public IActionResult Login(LoginDTO loginDTO)
-    // {
-    //     if (ModelState.IsValid)
-    //     {
-    //         var user = repository.Login(loginDTO);
-    //         if (user != null)
-    //         {
-    //             httpContextAccessor.HttpContext.Session.SetString("username", loginDTO.username);
-    //             return RedirectToAction("Index", "Post");
-    //         }
-    //         else
-    //         {
-    //             // Xử lý trường hợp đăng nhập không thành công, ví dụ: hiển thị thông báo lỗi
-    //             ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-    //         }
-    //     }
-
-    //     return View(loginDTO);
-
-    // }
     [HttpPost]
     public async Task<IActionResult> Login(User userData)
     {

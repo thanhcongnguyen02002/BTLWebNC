@@ -26,7 +26,7 @@ public class UserController : Controller
     {
         var myprofile = new MyProfile();
         var user = repository.MyProfile();
-        var posts = postRepository.GetPostByID();
+        List<Post> posts = postRepository.GetPostByID();
         if (user != null)
         {
             myprofile.User = user;

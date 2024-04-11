@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http.Features;
 namespace BTLWebNC.Models;
 [Table("tblPost")]
 public class Post
@@ -19,6 +20,6 @@ public class Post
     public DateTime updateDate { get; set; }
     public User User { get; set; }
     public Category Category { get; set; }
-    public List<Comment>? comments { get; set; }
+    public List<Comment>? Comments { get; set; }
 
 }

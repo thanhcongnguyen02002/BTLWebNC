@@ -32,6 +32,7 @@ builder.Services.AddScoped<ICategoryRepository, CategoryRepositoryImpl>();
 builder.Services.AddScoped<IUserRepository, UserRepositoryImpl>();
 builder.Services.AddScoped<IPostRepository, PostRepositoryImpl>();
 builder.Services.AddScoped<IAuthRepository, AuthRepositoryImpl>();
+builder.Services.AddScoped<ICommentRepository, CommentRepositoryImpl>();
 
 var app = builder.Build();
 
@@ -56,6 +57,6 @@ app.UseAuthentication();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Post}/{action=Index}/{id?}");
 
 app.Run();
