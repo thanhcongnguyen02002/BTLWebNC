@@ -18,35 +18,38 @@
 @if(Model.Posts !=null){
     <div><span class=" d-flex justify-content-end  mt-3"><a href='@Url.Action("CreatePost", "Post")' class="btn btn-primary ">Tạo bài viết mới</a></span></div>
     @foreach(var item in Model.Posts){
-        
-        <div id="postContainer-@item.id" class="container-sm mt-5">
+     <div class="container-sm mt-5" id="postContainer-@item.id">
         <div class="row justify-content-center">
-            <div class="col-7 bg-white" style="border-radius:10px;justify-content: space-between;">
+            <div class="col-7 bg-white" style="border-radius:10px">
                 <div>
-                    <div>
+                    
+                     <div>
                         <div class=" d-flex mt-3 justify-content-between align-items-center  w-100">
                             <h3 >@item.title</h3>
                             <div class="" style="left:auto">
                                 <i class="fa-solid fa-trash deleteIcon"  data-post-id="@item.id"></i>
-                                <i class="fa-solid fa-pen-to-square"></i>
+                                <a><i class="fa-solid fa-pen-to-square"></i></a>
+                                
                             </div>
                         </div>
                         <p>@item.createDate</p>
                     </div>
                     
-                    <div class="d-flex align-items-center mt-3">
+                    <div class="d-flex align-items-center mt-3" style="padding: 0 10%">
                         <div>
-                            <img src="~/img/review1.jpg" style="border-radius:50%; margin-left: 75px; width:40px"/>
+                            <img src="~/img/review1.jpg" style="border-radius:50%; width:40px"/>
                         </div>
                         <div class="ms-2">
-                           <span> @item.User.username</span>
+                           @if (item.User != null) { 
+                                <span><b>@item.User.username</b></span>
+                            }
                         </div>
                     </div>
-                    <div class="d-flex justify-content-center align-items-center mt-3">
-                        <img src ="~/img/ariport.jpg" style=" width: 600px; height: 400px; border-radius:8px"/>
+                    <div class=" mt-3 " style="padding: 0 10%">
+                        <img src ="~/img/ariport.jpg" style="border-radius:8px" class="img-fluid"/>
                     </div>
-                    <div class="d-flex justify-content-center mt-3" style="width: 600px; margin:0 auto">
-                        <span>@item.content</span>
+                    <div class="d-flex justify-content-center mt-3" style=" margin:0 auto ; padding:0 10%">
+                        <p>@item.content</p>
                     </div>
                     <hr>
                     
@@ -57,7 +60,10 @@
                             <div>yêu thích</div>
                         </div>
                         <div class="d-flex justify-content-center align-items-center gap-2 ">
-                            <div><i class="fa-solid fa-comment "></i></div>
+                            <div>
+                                <a  style="text-decoration: none; color: inherit;">
+                                <i class="fa-solid fa-comment commentIcon " data-post-id="@item.id"></i></a>
+                            </div>
                             <div>bình luận</div>
                         </div>
                         <div class="d-flex justify-content-center align-items-center gap-2">
@@ -77,8 +83,37 @@
         
     </div>
 }
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content " style="height: 700px;width:600px; overflow-y: auto;">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Comments</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" id="commentsBody">
+        
+        
+      </div>
+      <div class="modal-footer">
+        <div class="d-flex w-100 h-100 border align-items-center p-3" style="position: relative;background-color:#F0F2F5; border-radius:8px ">
+           <form>
+            <input id="commentInput"  style="width:500px; border:none ;background-color:#F0F2F5" placeholder="Viết bình luận..."/>
+           </form>
+            <div style="position: absolute;right: 25px;bottom: 20px;">
+                <i class="fa-solid fa-location-arrow" onclick="clickAddComment()"></i>
+            </div>
+            
+        <div>
+        @* <textarea class="w-100" style="border-radius:8px"></textarea> *@
+      </div>
+    </div>
+  </div>
+</div>
 <script>
-    function deletePost(postId) {
+// tym
+function deletePost(postId) {
        // var baseURL = "http://localhost:5051";
         var xhr = new XMLHttpRequest();
         xhr.open("DELETE", `/DeleteByID/${postId}` , true);
@@ -104,5 +139,175 @@
             }
         });
     });
+    function toggleHearts(element) {
+        var regularHeart = element.querySelector('.regularHeart');
+        var solidHeart = element.querySelector('.solidHeart');
+
+        if (regularHeart.style.display === "none") {
+            regularHeart.style.display = "inline";
+            solidHeart.style.display = "none";
+        } else {
+            regularHeart.style.display = "none";
+            solidHeart.style.display = "inline";
+        }
+    }
+var postId= null;
+    // load comment
+   document.querySelectorAll('.commentIcon').forEach(function(icon) {
+    icon.addEventListener('click', function () {
+      // Lấy ID của bài đăng từ data attribute
+       postId = this.getAttribute("data-post-id");
+      console.log(postId)
+      var modal = document.getElementById('exampleModal');
+      var modalInstance = new bootstrap.Modal(modal);
+      
+      // Gửi yêu cầu Ajax để lấy danh sách bình luận
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+          if (xhr.status === 200) {
+            var comments = JSON.parse(xhr.responseText);
+            console.log(comments);
+            showComments(comments);
+          } else {
+            console.error('Lỗi: ' + xhr.status);
+          }
+        }
+      };
+      xhr.open('GET', `/Comment/GetCommentByIdPost?id=`+postId , true);
+      xhr.send();
+ 
+      modalInstance.show();
+    });
+  });
+
+  function showComments(comments) {
+    var commentsBody = document.getElementById('commentsBody');
+      var inforuser;
+      commentsBody.innerHTML = ""; 
+      comments.forEach(function(comment) {
+        var user_id= comment.user_id;
+        console.log("comment:", comment);
+      var commentElement = document.createElement('span');
+      commentElement.textContent = comment.content; 
+      var commentContainer=document.createElement("div");
+      var commentAvt= document.createElement('div');
+      commentContainer.classList.add("commentContainer");
+      var commentImg= document.createElement('img')
+      commentImg.src="~/img/review1.jpg"
+      commentImg.classList.add("commentImg")
+      var commentDetail= document.createElement('div');
+      commentDetail.classList.add("commentDetail");
+      var commentUser= document.createElement('div');
+      commentUser.classList.add("commentUser")
+      
+      var userB= document.createElement('b')
+      var commentContent= document.createElement('div');
+      commentContent.classList.add("commentContent")
+      commentsBody.appendChild(commentContainer);
+      commentContainer.appendChild(commentAvt);
+      commentContainer.appendChild(commentDetail);
+      commentAvt.appendChild(commentImg);
+      commentDetail.appendChild(commentUser);
+      commentDetail.appendChild(commentContent);
+      commentContent.appendChild(commentElement)
+      commentUser.appendChild(userB)
+      //userB.textContent="Thanh Cong";
+      getUserNameByID(user_id, function(user){
+             inforuser=user;
+          userB.textContent=user.username;
+        });
+    });
+  }
+
+function clickAddComment(){
+  console.log(postId);
+  var content = document.getElementById('commentInput').value;
+  if(content != null){
+    addComment(postId, content);
+  }
+  else{
+     console.log("chưa nhập comment");
+  }
+}
+function addComment(postId, content){
+  var xhr = new XMLHttpRequest();
+    var url = '/Comment/CreateComment?id_post=' + postId;;
+    var params = JSON.stringify({
+        content: content
+    });
+
+    xhr.open('POST', url, true);
+    xhr.setRequestHeader('Content-type', 'application/json');
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            if (xhr.status == 200) {
+                console.log('Bình luận đã được tạo: ', xhr.responseText);
+                updateComments(postId);
+                document.getElementById('commentInput').value='';
+            } else {
+                console.error('Lỗi khi tạo bình luận: ', xhr.status);
+            }
+        }
+    }
+
+    xhr.send(params);
+}
+function updateComments(postId) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                var comments = JSON.parse(xhr.responseText);
+                showComments(comments);
+            } else {
+                console.error('Lỗi: ' + xhr.status);
+            }
+        }
+    };
+    xhr.open('GET', '/Comment/GetCommentByIdPost?id=' + postId, true);
+    xhr.send();
+}
+
+function getUserNameByID(user_id, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                var user = JSON.parse(xhr.responseText);
+               // console.log('user ne:',user);
+               callback(user);
+            } else {
+                console.error('Lỗi: ' + xhr.status);
+            }
+        }
+    };
+    xhr.open('GET', '/User/getUserByID?id=' + user_id, true);
+    xhr.send();
+}
+
 </script>
+<style>
+input:focus-visible{
+    outline: none
+}
+.commentContainer {
+  display:flex;
+  margin-top: 5px
+}
+.commentAvt {
+  width: 40px;
+  border-radius:50%;
+  
+}
+.commentDetail {
+  margin-left:20px;
+  border-radius:8px;
+   background-color:#F0F2F5;
+   border: 1px;
+   padding: 10px 15px;
+    margin-top: 10px;
+}
+</style>
 

@@ -63,7 +63,9 @@
       </div>
       <div class="modal-footer">
         <div class="d-flex w-100 h-100 border align-items-center p-3" style="position: relative;background-color:#F0F2F5; border-radius:8px ">
+           <form>
             <input id="commentInput"  style="width:500px; border:none ;background-color:#F0F2F5" placeholder="Viết bình luận..."/>
+           </form>
             <div style="position: absolute;right: 25px;bottom: 20px;">
                 <i class="fa-solid fa-location-arrow" onclick="clickAddComment()"></i>
             </div>
@@ -88,12 +90,12 @@
             solidHeart.style.display = "inline";
         }
     }
-
+var postId= null;
     // load comment
    document.querySelectorAll('.commentIcon').forEach(function(icon) {
     icon.addEventListener('click', function () {
       // Lấy ID của bài đăng từ data attribute
-      var postId = this.getAttribute("data-post-id");
+       postId = this.getAttribute("data-post-id");
       console.log(postId)
       var modal = document.getElementById('exampleModal');
       var modalInstance = new bootstrap.Modal(modal);
@@ -120,15 +122,14 @@
 
   function showComments(comments) {
     var commentsBody = document.getElementById('commentsBody');
-
+      var inforuser;
       commentsBody.innerHTML = ""; 
       comments.forEach(function(comment) {
+        var user_id= comment.user_id;
+        console.log("comment:", comment);
       var commentElement = document.createElement('span');
-
       commentElement.textContent = comment.content; 
-      //commentsBody.appendChild(commentElement);
       var commentContainer=document.createElement("div");
-      
       var commentAvt= document.createElement('div');
       commentContainer.classList.add("commentContainer");
       var commentImg= document.createElement('img')
@@ -150,17 +151,15 @@
       commentDetail.appendChild(commentContent);
       commentContent.appendChild(commentElement)
       commentUser.appendChild(userB)
-      userB.textContent="Thanh Cong";
+      //userB.textContent="Thanh Cong";
+      getUserNameByID(user_id, function(user){
+             inforuser=user;
+          userB.textContent=user.username;
+        });
     });
   }
 
 function clickAddComment(){
-  var commentIcon = document.querySelector('.commentIcon');
-    
-    // Kiểm tra xem phần tử có tồn tại không
-    
-        var postId = commentIcon.getAttribute('data-post-id');
-  //var postId = document.querySelector('commentIcon').getAttribute('data-post-id');
   console.log(postId);
   var content = document.getElementById('commentInput').value;
   if(content != null){
@@ -172,9 +171,8 @@ function clickAddComment(){
 }
 function addComment(postId, content){
   var xhr = new XMLHttpRequest();
-    var url = '/Comment/CreateComment';
+    var url = '/Comment/CreateComment?id_post=' + postId;;
     var params = JSON.stringify({
-        id_post: postId,
         content: content
     });
 
@@ -185,6 +183,8 @@ function addComment(postId, content){
         if (xhr.readyState == XMLHttpRequest.DONE) {
             if (xhr.status == 200) {
                 console.log('Bình luận đã được tạo: ', xhr.responseText);
+                updateComments(postId);
+                document.getElementById('commentInput').value='';
             } else {
                 console.error('Lỗi khi tạo bình luận: ', xhr.status);
             }
@@ -193,7 +193,39 @@ function addComment(postId, content){
 
     xhr.send(params);
 }
-  
+function updateComments(postId) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                var comments = JSON.parse(xhr.responseText);
+                showComments(comments);
+            } else {
+                console.error('Lỗi: ' + xhr.status);
+            }
+        }
+    };
+    xhr.open('GET', '/Comment/GetCommentByIdPost?id=' + postId, true);
+    xhr.send();
+}
+
+function getUserNameByID(user_id, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                var user = JSON.parse(xhr.responseText);
+               // console.log('user ne:',user);
+               callback(user);
+            } else {
+                console.error('Lỗi: ' + xhr.status);
+            }
+        }
+    };
+    xhr.open('GET', '/User/getUserByID?id=' + user_id, true);
+    xhr.send();
+}
+
 </script>
 <style>
 input:focus-visible{

@@ -36,4 +36,10 @@ public class UserController : Controller
         return RedirectToAction("Index", "Post");
 
     }
+    [HttpGet]
+    public IActionResult getUserByID(int id)
+    {
+        var result = repository.getUserByID(id);
+        return Json(result);
+    }
 }

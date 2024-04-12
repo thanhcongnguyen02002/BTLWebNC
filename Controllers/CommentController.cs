@@ -24,9 +24,9 @@ public class CommentController : Controller
         return Json(resutl);
     }
     [HttpPost]
-    public IActionResult CreateComment(int id_post, Comment comment)
+    public IActionResult CreateComment(int id_post, [FromBody] Comment comment)
     {
         var resutl = repository.CreateComment(id_post, comment);
-        return Json(Ok());
+        return Json(new { success = true });
     }
 }
