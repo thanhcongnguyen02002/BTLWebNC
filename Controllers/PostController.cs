@@ -30,5 +30,10 @@ public class PostController : Controller
         repository.DeleteByID(id);
         return Json(new { success = true });
     }
+    public IActionResult UpdatePost(int id, Post post)
+    {
+        var result = repository.Update(id, post);
+        return View(result);
+    }
 
 }

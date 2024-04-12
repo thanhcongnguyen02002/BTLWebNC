@@ -78,6 +78,19 @@ public class PostRepositoryImpl : IPostRepository
 
     public Post Update(int id, Post post)
     {
-        throw new NotImplementedException();
+        var item = context.Posts.FirstOrDefault(p => p.id == id);
+        if (item != null)
+        {
+            Post result = new Post
+            {
+                category_id = post.category_id,
+                content = post.content,
+                title = post.title,
+                updateDate = DateTime.Now
+            };
+            context.Posts.Update(result);
+            context.SaveChanges();
+        }
+        return post;
     }
 }

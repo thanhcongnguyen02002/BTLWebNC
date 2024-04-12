@@ -87,4 +87,8 @@ public class UserRepositoryImpl : IUserRepository
         return null;
     }
 
+    public User getUserByID(int id)
+    {
+        return context.Users.Find(id);
+    }
 }
