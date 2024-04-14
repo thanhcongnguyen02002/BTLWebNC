@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 namespace BTLWebNC.Controllers;
 
 public class CategoryController : Controller
@@ -12,6 +13,7 @@ public class CategoryController : Controller
     public IActionResult Index()
     {
         List<Category> categories = repository.GetListAllCategory();
-        return View(categories);
+        ViewData["Categories"] = categories;
+        return View();
     }
 }

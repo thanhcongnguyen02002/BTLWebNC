@@ -47,6 +47,7 @@ public class PostRepositoryImpl : IPostRepository
         var result = context.Posts.FirstOrDefault(p => p.id == id);
         if (result != null)
         {
+
             context.Posts.Remove(result);
             context.SaveChanges();
         }
@@ -55,7 +56,12 @@ public class PostRepositoryImpl : IPostRepository
 
     public List<Post> GetAllPost()
     {// include quy xac dinh du lieu rang buoc cung duoc truy van cung du lieu chinh
-        return context.Posts.Include(i => i.User).ToList();
+        return context.Posts.Where(p => p.status == true).Include(i => i.User).ToList();
+    }
+
+    public Post getById(int id)
+    {
+        return context.Posts.FirstOrDefault(p => p.id == id);
     }
 
     public List<Post> GetPostByID()
@@ -79,18 +85,18 @@ public class PostRepositoryImpl : IPostRepository
     public Post Update(int id, Post post)
     {
         var item = context.Posts.FirstOrDefault(p => p.id == id);
+
         if (item != null)
         {
-            Post result = new Post
-            {
-                category_id = post.category_id,
-                content = post.content,
-                title = post.title,
-                updateDate = DateTime.Now
-            };
-            context.Posts.Update(result);
+
+            item.content = post.content;
+            item.title = post.title;
+            item.updateDate = DateTime.Now;
+            context.Posts.Update(item);
             context.SaveChanges();
         }
+
+
         return post;
     }
 }
