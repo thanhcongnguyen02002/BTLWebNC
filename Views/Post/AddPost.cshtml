@@ -14,7 +14,18 @@
 
                 <input  style="padding:8px 12px;border:1px solid rgba(0, 0, 0, .2); border-radius:8px" asp-for="title" class="w-100 mt-3" type="text" placeholder="Tiêu đề"/>
                 <input  style="padding:8px 12px;border:1px solid rgba(0, 0, 0, .2); border-radius:8px" asp-for="category_id" class="w-100 mt-3" type="number" placeholder="Category ID" />
-                <input  style="padding:8px 12px;border:1px solid rgba(0, 0, 0, .2); border-radius:8px" asp-for="thumbnail" class="w-100 mt-3" type="text" placeholder="avt"/>
+                @* <select asp-for="category_id" class="form-control">
+                    <option value="">-- Select Category --</option>
+                    @foreach (var category in (IEnumerable<Category>)ViewData["Categories"])
+                    {
+                        <option value="@category.id">@category.name</option>
+                    }
+                </select> *@
+                <div style="padding:8px 12px;border:1px solid rgba(0, 0, 0, .2); border-radius:8px" class="w-100 mt-3">
+                <label>Chọn file :</label>
+                    <input  type="file" id="imageInput" />
+                </div>
+                <input  style="padding:8px 12px;border:1px solid rgba(0, 0, 0, .2); border-radius:8px" asp-for="thumbnail" class="w-100 mt-3" type="text" placeholder="avt" id="ImgConvert" type="hidden"/>
                 <textarea   style="padding:8px 12px;border:1px solid rgba(0, 0, 0, .2); border-radius:8px" asp-for="content" class="w-100 mt-3" type="text"  style="height:300px"> </textarea >
                 <div class=" text-center">
                     <button class=" btn btn-primary d-flex justify-content-center mt-3" style="width:100px; " type="submit">thêm</button>
@@ -24,3 +35,16 @@
         </div>
     </div>
 </div>
+<script>
+    // Chuyển đổi ảnh thành base64 string khi người dùng chọn ảnh
+        document.getElementById('imageInput').addEventListener('change', function () {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('ImgConvert').value = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+</script>

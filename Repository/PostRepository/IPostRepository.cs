@@ -6,4 +6,5 @@ public interface IPostRepository
     void DeleteByID(int id);
     Post Update(int id, Post post);
     Post CreatePost(Post post);
+    Post getById(int id);
 }
