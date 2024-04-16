@@ -183,7 +183,7 @@ function addComment(postId, content){
         if (xhr.readyState == XMLHttpRequest.DONE) {
             if (xhr.status == 200) {
                 console.log('Bình luận đã được tạo: ', xhr.responseText);
-                updateComments(postId);
+                //updateComments(postId);
                 document.getElementById('commentInput').value='';
             } else {
                 console.error('Lỗi khi tạo bình luận: ', xhr.status);
@@ -249,3 +249,4 @@ input:focus-visible{
     margin-top: 10px;
 }
 </style>
+@* <i class="fa-regular fa-eye-slash"></i> disable *@

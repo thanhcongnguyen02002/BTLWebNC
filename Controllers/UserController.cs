@@ -42,4 +42,12 @@ public class UserController : Controller
         var result = repository.getUserByID(id);
         return Json(result);
     }
+    [HttpGet]
+    public IActionResult getAllUser()
+    {
+        var result = repository.GetListUser();
+
+        return View("Index", result);
+
+    }
 }

@@ -1,0 +1,30 @@
+@{
+    @* @Layout = "~/Views/Shared/_LayoutAdmin.cshtml"; *@
+
+}
+@model List<User>
+<div class="row border">
+
+    <div class="col-3">Tên tài khoản</div>
+    <div class="col-3">email</div>
+    <div class="col-3">email</div>
+    <div class="col-3">email</div>
+    
+</div>
+@foreach(var item in Model){
+    <div class="row border">
+        <div class="col-3">
+        @item.username
+        </div>
+        <div class="col-3">
+        @item.email
+        </div>
+        <div class="col-3">
+        thanh cong nè
+        </div>
+        <div class="col-3">
+        Diem 
+        </div>
+    </div>  
+}
+

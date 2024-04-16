@@ -85,7 +85,7 @@ public class AuthController : Controller
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), properties);
                 if (checkUsername.role == "admin")
                 {
-                    return RedirectToAction("CreatePost", "Post");
+                    return RedirectToAction("Index", "Admin");
                 }
                 else
                 {

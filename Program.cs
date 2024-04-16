@@ -33,6 +33,7 @@ builder.Services.AddScoped<IUserRepository, UserRepositoryImpl>();
 builder.Services.AddScoped<IPostRepository, PostRepositoryImpl>();
 builder.Services.AddScoped<IAuthRepository, AuthRepositoryImpl>();
 builder.Services.AddScoped<ICommentRepository, CommentRepositoryImpl>();
+builder.Services.AddScoped<IDisableRepository, DisableRepositoryImpl>();
 
 var app = builder.Build();
 
