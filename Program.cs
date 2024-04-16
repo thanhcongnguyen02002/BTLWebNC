@@ -33,6 +33,7 @@ builder.Services.AddScoped<IUserRepository, UserRepositoryImpl>();
 builder.Services.AddScoped<IPostRepository, PostRepositoryImpl>();
 builder.Services.AddScoped<IAuthRepository, AuthRepositoryImpl>();
 builder.Services.AddScoped<ICommentRepository, CommentRepositoryImpl>();
+builder.Services.AddScoped<IDisableRepository, DisableRepositoryImpl>();
 
 var app = builder.Build();
 
@@ -54,6 +55,13 @@ app.UseAuthorization();
 app.UseSession();
 //authorize
 app.UseAuthentication();
+app.UseEndpoints(endpoints =>
+      {
+          endpoints.MapControllerRoute(
+              name: "areas",
+              pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+            );
+      });
 
 app.MapControllerRoute(
     name: "default",

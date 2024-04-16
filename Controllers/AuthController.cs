@@ -21,6 +21,7 @@ public class AuthController : Controller
         this.context = context;
         this.authRepository = authRepository;
 
+
     }
 
 
@@ -82,10 +83,75 @@ public class AuthController : Controller
                 };
 
                 await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity), properties);
-                return RedirectToAction("Index", "Post");
+                if (checkUsername.role == "admin")
+                {
+                    return RedirectToAction("Index", "Admin");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Post");
+                }
+
             }
         }
     }
+    // [HttpPost]
+    // public async Task<IActionResult> Login(User userData)
+    // {
+    //     if (userData.username == null || userData.password == null)
+    //     {
+    //         return View(userData);
+    //     }
+    //     else
+    //     {
+    //         var user = context.Users.SingleOrDefault(x => x.username == userData.username && x.password == userData.password);
+
+    //         if (user == null)
+    //         {
+    //             ModelState.AddModelError("Username", "Tài khoản không tồn tại hoặc sai mật khẩu");
+    //             return View(userData);
+    //         }
+    //         else
+    //         {
+    //             var claims = new List<Claim>
+    //         {
+    //             new Claim(ClaimTypes.NameIdentifier, user.id.ToString()),
+    //             new Claim(ClaimTypes.Name, user.username),
+    //             new Claim("Email", user.email),
+    //         };
+
+    //             var roles = await userManager.GetRolesAsync(user); // userManager là một instance của UserManager<TUser>
+
+    //             foreach (var role in roles)
+    //             {
+    //                 claims.Add(new Claim(ClaimTypes.Role, role));
+    //             }
+
+    //             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+    //             var principal = new ClaimsPrincipal(identity);
+
+    //             await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal, new AuthenticationProperties
+    //             {
+    //                 IsPersistent = true,
+    //                 ExpiresUtc = DateTimeOffset.UtcNow.AddMinutes(20) // Thời gian hết hạn của cookie
+    //             });
+
+    //             if (roles.Contains("admin"))
+    //             {
+    //                 return RedirectToAction("CreatePost", "Post");
+    //             }
+    //             else if (roles.Contains("user"))
+    //             {
+    //                 return RedirectToAction("Index", "User");
+    //             }
+    //             else
+    //             {
+    //                 return RedirectToAction("Index", "Home"); // Chuyển hướng mặc định nếu không có vai trò nào được xác định
+    //             }
+    //         }
+    //     }
+    // }
+
     [HttpPost]
     public IActionResult Register(ResgisterDTO resgisterDTO)
     {

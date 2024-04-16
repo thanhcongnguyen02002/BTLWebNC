@@ -45,11 +45,9 @@ public class UserRepositoryImpl : IUserRepository
         var findById = context.Users.ToList().FirstOrDefault(u => u.id == id);
         if (findById != null)
         {
-            var result = new User
-            {
-                status = false
-            };
-            context.Users.Update(result);
+            findById.status = false;
+            context.Users.Update(findById);
+            context.SaveChanges();
         }
 
     }

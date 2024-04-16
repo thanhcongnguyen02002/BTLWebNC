@@ -1,0 +1,99 @@
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor HttpContextAccessor
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - BTLWebNC</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/BTLWebNC.styles.css" asp-append-version="true" />
+</head>
+<body>
+    
+   <header>
+    <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow">
+        <div class="container-fluid">
+            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                <img src="~/img/review3.jpg" class="img-fluid" />
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <ul class="navbar-nav flex-grow-1 justify-content-end nav-right">
+                    <li class="nav-item">
+                    @if(HttpContextAccessor.HttpContext.Session.GetString("username")== null){
+                        <a class="nav-link text-dark text-capitalize" asp-area="" asp-controller="Home" asp-action="usermanual">Giới thiệu</a>}
+                    </li>
+                    <li class="nav-item">
+                    @if(HttpContextAccessor.HttpContext.Session.GetString("username")== null){
+                        <a class="nav-link text-dark text-capitalize" asp-area="" asp-controller="Home" asp-action="">Tin tức</a>}
+                    </li>
+                    <li class="nav-item">
+                    @if(HttpContextAccessor.HttpContext.Session.GetString("username")== null){
+                        <a class="nav-link text-dark text-capitalize" asp-area="" asp-controller="Home" asp-action="">Thông tin liên hệ</a>}
+                    </li>
+                    <li class="nav-item">
+                    @if(HttpContextAccessor.HttpContext.Session.GetString("username")== null){
+                        <a class="nav-link text-dark text-capitalize" asp-area="" asp-controller="Home" asp-action="">Quản trị</a>}
+                    </li>
+                    </li>
+                    <li class="nav-item ">
+                     @if(HttpContextAccessor.HttpContext.Session.GetString("username")== null){
+                        <a class="nav-link text-dark text-capitalize" asp-area="" asp-controller="Auth" asp-action="Login"><i class="fa-solid fa-right-to-bracket"></i> đăng nhập</a>}
+                    </li>
+                    <li class="nav-item ">
+                     @if(HttpContextAccessor.HttpContext.Session.GetString("username")!= null){
+                        <a class="nav-link text-dark text-capitalize" asp-area="" asp-controller="Post" asp-action="Index"><i class="fa-solid fa-house"></i> Bảng tin</a>}
+                    </li>
+                    <li class="nav-item">
+                        @if(HttpContextAccessor.HttpContext.Session.GetString("username")!= null){
+                             <a class="nav-link text-dark text-capitalize" asp-area="" asp-controller="User" asp-action="MyProfile"><i class="fa-regular fa-user"></i> @HttpContextAccessor.HttpContext.Session.GetString("username")</a>
+                        }
+                    </li>
+                    <li class="nav-item ">
+                     @if(HttpContextAccessor.HttpContext.Session.GetString("username")!= null){
+                        <a class="nav-link text-dark text-capitalize" asp-area="" asp-controller="Auth" asp-action="Logout"><i class="fa-solid fa-right-to-bracket"></i> đăng xuất</a>}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+    <div class="">
+    <div style="">
+    <ul class="nav nav-pills">
+    <li class="nav-item">
+        <a class="nav-link active" aria-current="page" href="#">About</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" asp-action="getAllUser" asp-controller="User">User</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" asp-action="" asp-controller="">Category</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" asp-action="" asp-controller="">Post</a>
+    </li>
+    </ul>
+</div>
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js" integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="~/js/home.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+     @* <script src="https://kit.fontawesome.com/6cd60d624c.js" crossorigin="anonymous"></script> *@
+     <link rel="stylesheet" href="~/lib/fornt/all.min.css" />
+     <script src="~/lib/fornt/all.min.js"> </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -15,7 +15,7 @@ public class User
     public DateTime createDate { get; set; }
     public string? avatar { get; set; }
     public string? role { get; set; }
-    public bool status { get; set; }
-    public List<Post> posts { get; set; }
+    public bool? status { get; set; }
+    public List<Post>? posts { get; set; }
     public List<Comment>? comments { get; set; }
 }
