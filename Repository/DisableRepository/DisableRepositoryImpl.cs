@@ -11,17 +11,29 @@ public class DisableRepositoryImpl : IDisableRepository
     [HttpPost]
     public Disable AddDisable(int id)
     {
-
-        Disable disable = new Disable
+        var dis = context.Disables.FirstOrDefault(d => d.id_post == id);
+        if (dis == null)
         {
-            long_time = DateTime.Now,
-            id_post = id,
-            disabled = true,
+            Disable disable = new Disable
+            {
+                long_time = DateTime.Now,
+                id_post = id,
+                disabled = true,
 
-        };
-        context.Disables.Add(disable);
-        context.SaveChanges();
-        return (disable);
+            };
+            context.Disables.Add(disable);
+            context.SaveChanges();
+            return (disable);
+        }
+        else
+        {
+            var check = dis.disabled == true ? false : true;
+            dis.disabled = check;
+            context.Disables.Update(dis);
+            context.SaveChanges();
+            return dis;
+        }
+
 
 
     }
